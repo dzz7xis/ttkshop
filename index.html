@@ -1,0 +1,223 @@
+import React, { useState } from 'react';
+import { ShoppingBag, TrendingUp, Package, DollarSign, Eye, Heart, Share2, MessageCircle, Users, Star, ChevronDown } from 'lucide-react';
+
+export default function TikTokShopDashboard() {
+  const [stats, setStats] = useState({
+    totalVendas: 'R$ 45.892',
+    pedidos: '234',
+    visualizacoes: '127.5k',
+    taxaConversao: '3.2%',
+  });
+
+  const [produtos, setProdutos] = useState([
+    { id: 1, nome: 'Smartphone X Pro', preco: 'R$ 2.499', vendas: 45, estoque: 23, img: '📱' },
+    { id: 2, nome: 'Fone Bluetooth Premium', preco: 'R$ 299', vendas: 89, estoque: 156, img: '🎧' },
+    { id: 3, nome: 'Smartwatch Fitness', preco: 'R$ 599', vendas: 67, estoque: 78, img: '⌚' },
+    { id: 4, nome: 'Câmera Action 4K', preco: 'R$ 899', vendas: 34, estoque: 45, img: '📷' },
+  ]);
+
+  const [videos, setVideos] = useState([
+    { id: 1, titulo: 'Review Completo', views: '45.2k', likes: '3.2k', comentarios: '567', vendas: 23 },
+    { id: 2, titulo: 'Unboxing Especial', views: '32.8k', likes: '2.8k', comentarios: '423', vendas: 18 },
+    { id: 3, titulo: 'Como Usar', views: '28.5k', likes: '2.1k', comentarios: '312', vendas: 15 },
+  ]);
+
+  const editarStat = (campo, valor) => {
+    setStats({ ...stats, [campo]: valor });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-pink-900 p-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-6 mb-6 border border-pink-500/20">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-pink-600 rounded-2xl flex items-center justify-center">
+                <ShoppingBag className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-white">TikTok Shop</h1>
+                <p className="text-gray-400">Painel de Vendas</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="bg-pink-500/20 px-4 py-2 rounded-full border border-pink-500/50">
+                <span className="text-pink-400 font-semibold">Live</span>
+              </div>
+              <button className="bg-gradient-to-r from-cyan-500 to-pink-500 px-6 py-2 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-pink-500/50 transition">
+                Criar Live
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-500/50 transition">
+            <div className="flex items-center justify-between mb-2">
+              <DollarSign className="w-8 h-8 text-cyan-400" />
+              <TrendingUp className="w-5 h-5 text-green-400" />
+            </div>
+            <input
+              type="text"
+              value={stats.totalVendas}
+              onChange={(e) => editarStat('totalVendas', e.target.value)}
+              className="text-2xl font-bold text-white bg-transparent border-none outline-none w-full mb-1"
+            />
+            <p className="text-gray-400 text-sm">Total de Vendas</p>
+            <p className="text-green-400 text-xs mt-2">+23.5% vs. semana passada</p>
+          </div>
+
+          <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-pink-500/20 hover:border-pink-500/50 transition">
+            <div className="flex items-center justify-between mb-2">
+              <Package className="w-8 h-8 text-pink-400" />
+              <TrendingUp className="w-5 h-5 text-green-400" />
+            </div>
+            <input
+              type="text"
+              value={stats.pedidos}
+              onChange={(e) => editarStat('pedidos', e.target.value)}
+              className="text-2xl font-bold text-white bg-transparent border-none outline-none w-full mb-1"
+            />
+            <p className="text-gray-400 text-sm">Pedidos</p>
+            <p className="text-green-400 text-xs mt-2">+15.2% esta semana</p>
+          </div>
+
+          <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/20 hover:border-purple-500/50 transition">
+            <div className="flex items-center justify-between mb-2">
+              <Eye className="w-8 h-8 text-purple-400" />
+              <TrendingUp className="w-5 h-5 text-green-400" />
+            </div>
+            <input
+              type="text"
+              value={stats.visualizacoes}
+              onChange={(e) => editarStat('visualizacoes', e.target.value)}
+              className="text-2xl font-bold text-white bg-transparent border-none outline-none w-full mb-1"
+            />
+            <p className="text-gray-400 text-sm">Visualizações</p>
+            <p className="text-green-400 text-xs mt-2">+42.8% de alcance</p>
+          </div>
+
+          <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-orange-500/20 hover:border-orange-500/50 transition">
+            <div className="flex items-center justify-between mb-2">
+              <Users className="w-8 h-8 text-orange-400" />
+              <TrendingUp className="w-5 h-5 text-green-400" />
+            </div>
+            <input
+              type="text"
+              value={stats.taxaConversao}
+              onChange={(e) => editarStat('taxaConversao', e.target.value)}
+              className="text-2xl font-bold text-white bg-transparent border-none outline-none w-full mb-1"
+            />
+            <p className="text-gray-400 text-sm">Taxa de Conversão</p>
+            <p className="text-green-400 text-xs mt-2">+0.8% de melhoria</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Produtos */}
+          <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-pink-500/20">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                <ShoppingBag className="w-6 h-6 text-pink-400" />
+                Produtos em Destaque
+              </h2>
+              <button className="text-pink-400 hover:text-pink-300 text-sm">Ver todos</button>
+            </div>
+            <div className="space-y-4">
+              {produtos.map((produto) => (
+                <div key={produto.id} className="bg-white/5 rounded-xl p-4 hover:bg-white/10 transition border border-white/10">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-pink-600 rounded-lg flex items-center justify-center text-2xl">
+                      {produto.img}
+                    </div>
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        value={produto.nome}
+                        onChange={(e) => {
+                          const novos = [...produtos];
+                          novos[produto.id - 1].nome = e.target.value;
+                          setProdutos(novos);
+                        }}
+                        className="text-white font-semibold bg-transparent border-none outline-none w-full"
+                      />
+                      <div className="flex items-center gap-4 mt-1">
+                        <input
+                          type="text"
+                          value={produto.preco}
+                          onChange={(e) => {
+                            const novos = [...produtos];
+                            novos[produto.id - 1].preco = e.target.value;
+                            setProdutos(novos);
+                          }}
+                          className="text-cyan-400 font-semibold bg-transparent border-none outline-none w-24"
+                        />
+                        <span className="text-gray-400 text-sm">{produto.vendas} vendas</span>
+                        <span className="text-gray-500 text-sm">Estoque: {produto.estoque}</span>
+                      </div>
+                    </div>
+                    <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Vídeos */}
+          <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/20">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                <TrendingUp className="w-6 h-6 text-cyan-400" />
+                Vídeos com Melhor Performance
+              </h2>
+              <button className="text-cyan-400 hover:text-cyan-300 text-sm">Ver todos</button>
+            </div>
+            <div className="space-y-4">
+              {videos.map((video) => (
+                <div key={video.id} className="bg-white/5 rounded-xl p-4 hover:bg-white/10 transition border border-white/10">
+                  <input
+                    type="text"
+                    value={video.titulo}
+                    onChange={(e) => {
+                      const novos = [...videos];
+                      novos[video.id - 1].titulo = e.target.value;
+                      setVideos(novos);
+                    }}
+                    className="text-white font-semibold mb-3 bg-transparent border-none outline-none w-full"
+                  />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-4 h-4 text-purple-400" />
+                      <span className="text-gray-300 text-sm">{video.views}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Heart className="w-4 h-4 text-pink-400" />
+                      <span className="text-gray-300 text-sm">{video.likes}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MessageCircle className="w-4 h-4 text-cyan-400" />
+                      <span className="text-gray-300 text-sm">{video.comentarios}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <ShoppingBag className="w-4 h-4 text-green-400" />
+                      <span className="text-gray-300 text-sm">{video.vendas} vendas</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Info */}
+        <div className="mt-6 bg-black/40 backdrop-blur-xl rounded-2xl p-4 border border-pink-500/20">
+          <p className="text-center text-gray-400 text-sm">
+            💡 <strong className="text-pink-400">Dica:</strong> Clique nos textos e números para editá-los em tempo real
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
